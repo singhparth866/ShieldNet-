@@ -117,14 +117,15 @@ A proprietary security concept aimed at protecting users from exploitation using
 🖼️ Screenshots
 
 🏠 Home Page
+<img width="1512" height="982" alt="Screenshot 2026-04-08 at 6 58 15 PM" src="https://github.com/user-attachments/assets/5555939d-39db-4e43-b316-7e5815c90250" />
 
-Screenshot 2026-04-08 at 6 58 15 PM
+
 📧 Breach Detection Tool
+<img width="1512" height="982" alt="Screenshot 2026-04-08 at 7 00 31 PM" src="https://github.com/user-attachments/assets/e509e78c-0de4-431f-9437-b5e77e5be75f" />
 
-Screenshot 2026-04-08 at 7 00 31 PM
 ⚙️ Services Section
+<img width="1512" height="982" alt="Screenshot 2026-04-08 at 6 58 11 PM" src="https://github.com/user-attachments/assets/daa14e2b-6020-4e70-a98a-d34a1d617714" />
 
-Screenshot 2026-04-08 at 6 58 09 PM
 ⚙️ Tech Stack
 
 Frontend: HTML, CSS, JavaScript
