@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>ShieldNet - AI Assistant</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+    <link href="{{ url_for('static', filename='img/favicon.png') }}" rel="icon" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500&family=Jost:wght@500;600;700&display=swap" rel="stylesheet">
+    <link href="{{ url_for('static', filename='lib/animate/animate.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='lib/owlcarousel/assets/owl.carousel.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='lib/lightbox/css/lightbox.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/317fe3b535.js" crossorigin="anonymous"></script>
+    <style>
+        .chat-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+        }
+        
+        .chat-messages {
+            height: 400px;
+            overflow-y: auto;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .message {
+            margin-bottom: 15px;
+            padding: 10px 15px;
+            border-radius: 10px;
+            max-width: 80%;
+            word-wrap: break-word;
+        }
+        
+        .user-message {
+            background-color: #dcf8c6;
+            margin-left: auto;
+            text-align: right;
+        }
+        
+        .bot-message {
+            background-color: #e8e8e8;
+            margin-right: auto;
+            line-height: 1.5;
+        }
+        
+        .bot-message p {
+            margin-bottom: 10px;
+        }
+        
+        .bot-message p:last-child {
+            margin-bottom: 0;
+        }
+        
+        .service-link {
+            display: inline-flex;
+            align-items: center;
+            background: linear-gradient(135deg, #0d6efd, #0a58ca);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            margin: 5px 2px;
+            text-decoration: none;
+            font-size: 0.9em;
+            font-weight: 500;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .service-link:hover {
+            background: linear-gradient(135deg, #0a58ca, #084298);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            text-decoration: none;
+            color: white;
+        }
+        
+        .service-link i {
+            margin-right: 6px;
+            font-size: 1em;
+        }
+        
+        .service-tag {
+            display: inline-flex;
+            align-items: center;
+            background: linear-gradient(135deg, #6c757d, #5a6268);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            margin: 5px 2px;
+            font-size: 0.9em;
+            font-weight: 500;
+            cursor: default;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .service-tag i {
+            margin-right: 6px;
+            font-size: 1em;
+        }
+        
+        .message-input {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .message-input textarea {
+            flex-grow: 1;
+            padding: 10px;
+            border-radius: 20px;
+            border: 1px solid #ddd;
+            resize: none;
+        }
+        
+        .send-btn {
+            background-color: #0d6efd;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            padding: 0 20px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .send-btn:hover {
+            background-color: #0b5ed7;
+        }
+        
+        .feature-card {
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .feature-icon {
+            font-size: 2rem;
+            color: #0d6efd;
+            margin-bottom: 15px;
+        }
+        
+        .loading-dots {
+            display: inline-block;
+        }
+        
+        .loading-dots:after {
+            content: '...';
+            animation: dots 1.5s steps(5, end) infinite;
+        }
+        
+        @keyframes dots {
+            0%, 20% {
+                color: rgba(0,0,0,0);
+                text-shadow: .25em 0 0 rgba(0,0,0,0), .5em 0 0 rgba(0,0,0,0);
+            }
+            40% {
+                color: #666;
+                text-shadow: .25em 0 0 rgba(0,0,0,0), .5em 0 0 rgba(0,0,0,0);
+            }
+            60% {
+                text-shadow: .25em 0 0 #666, .5em 0 0 rgba(0,0,0,0);
+            }
+            80%, 100% {
+                text-shadow: .25em 0 0 #666, .5em 0 0 #666;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container-xxl bg-white p-0">
+        <!-- Spinner Start -->
+        <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+            <div class="spinner-grow text-primary" style="width: 3rem; height: 3rem;" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>
+        <!-- Spinner End -->
+        
+        <!-- Navbar & Hero Start -->
+        <div class="container-xxl position-relative p-0">
+            <nav class="navbar navbar-expand-lg navbar-light px-4 px-lg-5 py-3 py-lg-0">
+                <a href="{{ url_for('views.index') }}" class="navbar-brand p-0">
+                    <h1 class="m-0">ShieldNet</h1>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                    <span class="fa fa-bars"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <div class="navbar-nav mx-auto py-0">
+                        <a href="{{ url_for('views.index') }}" class="nav-item nav-link">Home</a>
+                        <a href="{{ url_for('views.about') }}" class="nav-item nav-link">About</a>
+                        <a href="{{ url_for('views.service') }}" class="nav-item nav-link">Service</a>
+                        <a href="{{ url_for('views.contact') }}" class="nav-item nav-link">Contact</a>
+                        <a href="{{ url_for('views.ai_assistant') }}" class="nav-item nav-link active">AI Assistant</a>
+                    </div>
+                </div>
+            </nav>
+
+            <div class="container-xxl bg-primary hero-header">
+                <div class="container px-lg-5">
+                    <div class="row g-5 align-items-end">
+                        <div class="col-lg-6 text-center text-lg-start">
+                            <h1 class="text-white mb-4 animated slideInDown">ShieldNet AI Assistant</h1>
+                            <p class="text-white pb-3 animated slideInDown">Your intelligent cybersecurity companion powered by Google Gemini AI</p>
+                        </div>
+                        <div class="col-lg-6 text-center text-lg-start">
+                            <img class="img-fluid animated zoomIn" src="{{ url_for('static', filename='img/hero.png') }}" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Navbar & Hero End -->
+
+        <!-- AI Assistant Section Start -->
+        <div class="container-xxl py-5">
+            <div class="container py-5 px-lg-5">
+                <div class="row g-5">
+                    <div class="col-lg-7">
+                        <div class="chat-container">
+                            <h3 class="mb-4 text-center">Ask ShieldNet AI</h3>
+                            <div class="chat-messages" id="chatMessages">
+                                <div class="message bot-message">
+                                    Hello! I'm ShieldNet AI, your cybersecurity assistant. How can I help you today?
+                                </div>
+                            </div>
+                            <div class="message-input">
+                                <textarea id="userInput" placeholder="Type your cybersecurity question here..." rows="2"></textarea>
+                                <button class="send-btn" id="sendBtn">
+                                    <i class="fa fa-paper-plane"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-5">
+                        <h3 class="mb-4">What Can I Do?</h3>
+                        
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-search"></i>
+                            </div>
+                            <h5>Phishing Detection</h5>
+                            <p>Check if a website or URL is legitimate or a potential phishing attempt. Just ask "Is this URL safe?" followed by the link. The AI will analyze it directly.</p>
+                        </div>
+                        
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <h5>Threat Analysis</h5>
+                            <p>Get detailed information about cybersecurity threats, vulnerabilities, and attack vectors.</p>
+                        </div>
+                        
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-fire-extinguisher"></i>
+                            </div>
+                            <h5>Incident Response</h5>
+                            <p>Receive step-by-step guidance for handling security incidents and breaches.</p>
+                        </div>
+                        
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-graduation-cap"></i>
+                            </div>
+                            <h5>Security Education</h5>
+                            <p>Learn about cybersecurity best practices and how to protect yourself online.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- AI Assistant Section End -->
+
+        <!-- Footer Start -->
+        <div class="container-fluid bg-primary text-light footer wow fadeIn" data-wow-delay="0.1s">
+            <div class="container py-5 px-lg-5">
+                <div class="row g-5">
+                    <div class="col-md-6 col-lg-3">
+                        <p class="section-title text-white h5 mb-4">Quick Link<span></span></p>
+                        <a class="btn btn-link" href="{{ url_for('views.about') }}">About Us</a>
+                        <a class="btn btn-link" href="{{ url_for('views.contact') }}">Contact Us</a>
+                        <a class="btn btn-link" href="{{ url_for('views.policy') }}">Privacy Policy</a>
+                        <a class="btn btn-link" href="{{ url_for('views.terms') }}">Terms & Condition</a>
+                    </div>
+                </div>
+            </div>
+            <div class="container px-lg-5">
+                <div class="copyright">
+                    <div class="row">
+                        <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                            &copy; <a class="border-bottom" href="#">ShieldNet</a>, All Rights Reserved.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Footer End -->
+
+        <!-- Back to Top -->
+        <a href="#" class="btn btn-lg btn-secondary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+    </div>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ url_for('static', filename='lib/wow/wow.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='lib/easing/easing.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='lib/waypoints/waypoints.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='lib/counterup/counterup.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='lib/owlcarousel/owl.carousel.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='lib/isotope/isotope.pkgd.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='lib/lightbox/js/lightbox.min.js') }}"></script>
+    
+    <!-- Template Javascript -->
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    
+    <!-- AI Assistant Javascript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const chatMessages = document.getElementById('chatMessages');
+            const userInput = document.getElementById('userInput');
+            const sendBtn = document.getElementById('sendBtn');
+            
+            // Function to add a message to the chat
+            function addMessage(message, isUser) {
+                const messageDiv = document.createElement('div');
+                messageDiv.classList.add('message');
+                messageDiv.classList.add(isUser ? 'user-message' : 'bot-message');
+                
+                if (isUser) {
+                    messageDiv.textContent = message;
+                } else {
+                    // Process markdown for bot messages
+                    let formattedMessage = message
+                        // Convert **text** to <strong>text</strong>
+                        .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                        // Convert *text* to <em>text</em>
+                        .replace(/\*(.*?)\*/g, '<em>$1</em>')
+                        // Convert paragraphs to <p> tags
+                        .split('\n\n').map(para => `<p>${para}</p>`).join('')
+                        // Add service links with icons (phishing detection is handled directly in the chat)
+                        .replace(/\[malware scan\]/gi, '<a href="/service/malware-scanner" class="service-link"><i class="fas fa-virus-slash"></i> Malware Scan</a>')
+                        .replace(/\[port scan\]/gi, '<a href="/service/port-scanner" class="service-link"><i class="fas fa-network-wired"></i> Port Scan</a>')
+                        .replace(/\[vulnerability scan\]/gi, '<a href="/service/vulnerability-scanner" class="service-link"><i class="fas fa-search"></i> Vulnerability Scan</a>')
+                        .replace(/\[GuardCore\]/gi, '<a href="/service/volatile-vm" class="service-link"><i class="fas fa-laptop-code"></i> GuardCore</a>');
+                    
+                    messageDiv.innerHTML = formattedMessage;
+                }
+                
+                chatMessages.appendChild(messageDiv);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }
+            
+            // Function to add a loading indicator
+            function addLoadingIndicator() {
+                const loadingDiv = document.createElement('div');
+                loadingDiv.classList.add('message', 'bot-message', 'loading-indicator');
+                loadingDiv.innerHTML = 'Thinking<span class="loading-dots"></span>';
+                chatMessages.appendChild(loadingDiv);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+                return loadingDiv;
+            }
+            
+            // Function to send message to the AI
+            function sendMessage() {
+                const message = userInput.value.trim();
+                if (message === '') return;
+                
+                // Add user message to chat
+                addMessage(message, true);
+                userInput.value = '';
+                
+                // Add loading indicator
+                const loadingIndicator = addLoadingIndicator();
+                
+                // Send message to the server
+                fetch('/ai-assistant/chat', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ message: message }),
+                })
+                .then(response => response.json())
+                .then(data => {
+                    // Remove loading indicator
+                    loadingIndicator.remove();
+                    
+                    // Add AI response to chat
+                    addMessage(data.response, false);
+                })
+                .catch(error => {
+                    // Remove loading indicator
+                    loadingIndicator.remove();
+                    
+                    // Add error message
+                    addMessage('Sorry, I encountered an error. Please try again later.', false);
+                    console.error('Error:', error);
+                });
+            }
+            
+            // Event listeners
+            sendBtn.addEventListener('click', sendMessage);
+            userInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter' && !e.shiftKey) {
+                    e.preventDefault();
+                    sendMessage();
+                }
+            });
+        });
+    </script>
+</body>
+</html>

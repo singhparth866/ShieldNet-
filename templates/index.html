@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>ShieldNet - Fortifying Your Digital Frontiers</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+    <link href="{{ url_for('static', filename='img/favicon.png') }}" rel="icon" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500&family=Jost:wght@500;600;700&display=swap" rel="stylesheet">
+    <link href="{{ url_for('static', filename='lib/animate/animate.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='lib/owlcarousel/assets/owl.carousel.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='lib/lightbox/css/lightbox.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/317fe3b535.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="container-xxl bg-white p-0">
+        <!-- Spinner Start -->
+        <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+            <div class="spinner-grow text-primary" style="width: 3rem; height: 3rem;" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>
+        <!-- Spinner End -->
+        <!-- Navbar & Hero Start -->
+        <div class="container-xxl position-relative p-0">
+            <nav class="navbar navbar-expand-lg navbar-light px-4 px-lg-5 py-3 py-lg-0">
+                <a href="#" class="navbar-brand p-0">
+                    <h1 class="m-0">ShieldNet</h1>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                    <span class="fa fa-bars"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <div class="navbar-nav mx-auto py-0">
+                        <a href="{{ url_for('views.index') }}" class="nav-item nav-link active">Home</a>
+                        <a href="{{ url_for('views.about') }}" class="nav-item nav-link">About</a>
+                        <a href="{{ url_for('views.service') }}" class="nav-item nav-link">Service</a>
+                        <a href="{{ url_for('views.contact') }}" class="nav-item nav-link">Contact</a>
+                        <a href="{{ url_for('views.ai_assistant') }}" class="nav-item nav-link">AI Assistant</a>
+                    </div>
+                </div>
+            </nav>
+            <div class="container-xxl bg-primary hero-header">
+                <div class="container px-lg-5">
+                    <div class="row g-5 align-items-end">
+                        <div class="col-lg-6 text-center text-lg-start">
+                            <h1 class="text-white mb-4 animated slideInDown">Fortifying Your Digital Frontiers</h1>
+                            <p class="text-white pb-3 animated slideInDown">A hub for information, resources, and services for protecting your digital assets and systems from cyber threats</p>
+                        </div>
+                        <div class="col-lg-6 text-center text-lg-start">
+                            <img class="img-fluid animated zoomIn" src="{{ url_for('static', filename='img/hero.png') }}" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Navbar & Hero End -->
+        <!-- Feature Start -->
+        <div class="container-xxl py-5">
+            <div class="container py-5 px-lg-5">
+                <div class="row g-4">
+                    <div class="col-lg-4 wow fadeInUp" data-wow-delay="0.1s">
+                        <div class="feature-item bg-light rounded text-center p-4">
+                            <i class="fa fa-3x fa-lock text-primary mb-4"></i>
+                            <h5 class="mb-3">Secure</h5>
+                            <p class="m-0">We care about your privacy and safety and aim to protect the confidentiality, integrity, and availability of your data and resources</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 wow fadeInUp" data-wow-delay="0.3s">
+                        <div class="feature-item bg-light rounded text-center p-4">
+                            <i class="fa fa-3x fa-handshake text-primary mb-4"></i>
+                            <h5 class="mb-3">Trustworthy</h5>
+                            <p class="m-0">You can completely rely on us!</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 wow fadeInUp" data-wow-delay="0.5s">
+                        <div class="feature-item bg-light rounded text-center p-4">
+                            <i class="fa fa-3x fa-users text-primary mb-4"></i>
+                            <h5 class="mb-3">User-friendly</h5>
+                            <p class="m-0">Designed and optimized to be intuitive, easy to navigate, and pleasant to use</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Feature End -->
+        <!-- Service Start -->
+        <div class="container-xxl py-5">
+            <div class="container py-5 px-lg-5">
+                <div class="wow fadeInUp" data-wow-delay="0.1s">
+                    <p class="section-title text-secondary justify-content-center"><span></span>Our Services<span></span></p>
+                    <h1 class="text-center mb-5">What Solutions We Provide</h1>
+                    <div class="row g-4">
+                        <div class="col-lg-6 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                            <div class="service-item d-flex flex-column text-center rounded">
+                                <div class="service-icon flex-shrink-0">
+                                    <i class="fa-brands fa-searchengin fa-2x"></i>
+                                </div>
+                                <h5 class="mb-3">Malware scanner</h5>
+                                <p class="m-0">A web-based tool that allows users to scan files, websites, or entire systems for the presence of malware, viruses, and other malicious software.</p>
+                                <a class="btn btn-square" href="{{ url_for('views.malwareScanner') }}"><i class="fa fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                            <div class="service-item d-flex flex-column text-center rounded">
+                                <div class="service-icon flex-shrink-0">
+                                    <i class="fa-solid fa-file-shield fa-2x"></i>
+                                </div>
+                                <h5 class="mb-3">GuardCore</h5>
+                                <p class="m-0">A proprietary software that aspires to protect the end user from foreign threats and harmful exploitation of their product using the concept of virtualization.</p>
+                                <a class="btn btn-square" href="{{ url_for('views.GuardCore') }}"><i class="fa fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
+                            <div class="service-item d-flex flex-column text-center rounded">
+                                <div class="service-icon flex-shrink-0">
+                                    <i class="fa-solid fa-ethernet fa-2x"></i>
+                                </div>
+                                <h5 class="mb-3">Port scanner</h5>
+                                <p class="m-0">A software tool designed to scan a computer system, network, or server for open ports.</p>
+                                <a class="btn btn-square" href="{{ url_for('views.portScanner') }}"><i class="fa fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                         <div class="col-lg-6 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                            <div class="service-item d-flex flex-column text-center rounded">
+                                <div class="service-icon flex-shrink-0">
+                                    <i class="fa-solid fa-triangle-exclamation fa-2x"></i>
+                                </div>
+                                <h5 class="mb-3">Breach Detection</h5>
+                                <p class="m-0">A tool that checks if email addresses have appeared in public data breaches and provides details with recommended protective actions.</p>
+                                <a class="btn btn-square" href="{{ url_for('views.breachdetection') }}"><i class="fa fa-arrow-right"></i></a>
+                            </div>
+                        </div> 
+                    </div> 
+                </div>
+            </div>
+        </div>
+        <!-- Service End -->
+        <!-- Quotes Start -->
+        <div class="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s">
+            <div class="container py-5 px-lg-5">
+                <p class="section-title text-secondary justify-content-center"><span></span>Famous Quotes<span></span></p>
+                <h1 class="text-center mb-5">Words of Wisdom</h1>
+                <div class="owl-carousel testimonial-carousel">
+                    <div class="testimonial-item bg-light rounded my-4">
+                        <p class="fs-5"><i class="fa fa-quote-left fa-4x text-primary mt-n4 me-3"></i>Cybersecurity is much more than a matter of IT. It's a matter of national security.</p>
+                        <div class="d-flex align-items-center">
+                            <div class="ps-4">
+                                <h5 class="mb-1">Leon Panetta</h5>
+                                <span>American Politician</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-item bg-light rounded my-4">
+                        <p class="fs-5"><i class="fa fa-quote-left fa-4x text-primary mt-n4 me-3"></i>The weakest link in the cybersecurity chain is always the human element.</p>
+                        <div class="d-flex align-items-center">
+                            <div class="ps-4">
+                                <h5 class="mb-1">Kevin Mitnick</h5>
+                                <span>American Hacker</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-item bg-light rounded my-4">
+                        <p class="fs-5"><i class="fa fa-quote-left fa-4x text-primary mt-n4 me-3"></i>Cybersecurity is not a choice but an imperative for companies.</p>
+                        <div class="d-flex align-items-center">
+                            <div class="ps-4">
+                                <h5 class="mb-1">Satya Nadella</h5>
+                                <span>CEO of Microsoft</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Quotes End -->
+        <!-- Footer Start -->
+        <div class="container-fluid bg-primary text-light footer wow fadeIn" data-wow-delay="0.1s">
+            <div class="container py-5 px-lg-5">
+                <div class="row g-5">
+                    <div class="col-md-6 col-lg-3">
+                        <p class="section-title text-white h5 mb-4">Quick Link<span></span></p>
+                        <a class="btn btn-link" href="about.html">About Us</a>
+                        <a class="btn btn-link" href="contact.html">Contact Us</a>
+                        <a class="btn btn-link" href="policy.html">Privacy Policy</a>
+                        <a class="btn btn-link" href="terms.html">Terms & Condition</a>
+                    </div>
+                </div>
+            </div>
+            <div class="container px-lg-5">
+                <div class="copyright">
+                    <div class="row">
+                        <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                            &copy; <a class="border-bottom" href="#">ShieldNet</a>, All Rights Reserved.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Footer End -->
+        <!-- Back to Top -->
+        <a href="#" class="btn btn-lg btn-secondary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+    </div>
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ url_for('static', filename='lib/wow/wow.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='lib/easing/easing.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='lib/waypoints/waypoints.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='lib/counterup/counterup.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='lib/owlcarousel/owl.carousel.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='lib/isotope/isotope.pkgd.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='lib/lightbox/js/lightbox.min.js') }}"></script>
+    <!-- Template Javascript -->
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
